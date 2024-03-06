@@ -6,7 +6,7 @@ require '../database_setup.php';
 
 // Handling file upload
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['transactionFile'])) {
-    $uploadDir = '../imported/'; // Specify the directory where files should be uploaded
+    $uploadDir = '../'; // Specify the directory where files should be uploaded
     $uploadFile = $uploadDir . basename($_FILES['transactionFile']['name']);
 
     // Check if the file is a CSV by checking its MIME type or extension (optional, for security)
