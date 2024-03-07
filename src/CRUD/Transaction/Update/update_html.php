@@ -16,7 +16,7 @@ if (isset($_SESSION['message'])) {
 $id = $_GET['id'];
 $transaction = get_transaction_id($db, $id); // You need to implement this function
 
-// Convert the transaction date from the database to 'YYYY-MM-DD' format for the date input field
+// Convert the transaction date from the database to 'YYYY-MM-DD' format for the date input field.
 $transaction_date = date('Y-m-d', strtotime($transaction['transaction_date']));
 
 ?>
