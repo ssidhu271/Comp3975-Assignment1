@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     // Check for successful deletion
     if ($result) {
         // Success - redirect to a confirmation page or the buckets listing
-        header("Location: ../Read/read_html.php?message=Transaction+deleted+successfully");
+        header("Location: ../Read/read_html.php?message=Bucket+deleted+successfully");
         exit;
     } else {
         echo "Error deleting bucket. Please try again.";
