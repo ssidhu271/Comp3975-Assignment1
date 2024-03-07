@@ -31,7 +31,7 @@ $db = connect_database();
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <button onclick="location.href='./CRUD/Transaction/Read/read_html.php'" class="btn btn-info my-2">View Transactions</button>
-                <button onclick="location.href='./Chart/chart_html.php'" class="btn btn-info my-2">Chart</button>
+                <button onclick="location.href='./Chart/chart_html.php'" class="btn btn-info my-2">Report</button>
                 <button onclick="location.href='../src/CRUD/Bucket/Read/read_html.php'" class="btn btn-info my-2">View Bucket</button>
                 <?php
                 if (isset($_SESSION['user_id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
