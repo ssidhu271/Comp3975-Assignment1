@@ -1,13 +1,12 @@
 <?php
 require_once '../../../../User/authenticate.php';
 require_once '../../../PageConfig/navbar.php';
+require_once './update.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require '../Read/read.php'; // Include the file that sets up your database connection
-require './update.php';
 
 if (isset($_SESSION['message'])) {
     echo $_SESSION['message'];

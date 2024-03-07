@@ -91,7 +91,7 @@ function importCSVToSQLite($filePath, $db)
         $stmt = $db->prepare("INSERT INTO transactions (transaction_date, name, expense, income, overall_balance) VALUES (?, ?, ?, ?, ?)");
 
         // Skip the header line
-        fgetcsv($handle);
+        // fgetcsv($handle);
 
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
             $date = DateTime::createFromFormat('m/d/Y', $data[0]);
