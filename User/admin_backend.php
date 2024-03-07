@@ -4,12 +4,11 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require_once '../src/database_setup.php';
-require_once '../src/PageConfig/navbar.php';
 $db = connect_database();
 
 $message = '';
 if (isset($_GET['approved']) && $_GET['approved'] == 1) {
-    $message = '<div class="alert alert-success" role="alert">User has been approved!</div>';
+    $message = 'User has been approved!';
 }
 
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
@@ -23,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_user_ids'])) 
         $stmt->bindValue(1, $user_id, SQLITE3_INTEGER);
         $stmt->execute();
     }
-    $_SESSION['message'] = '<div class="alert alert-success" role="alert">' . count($user_ids_to_approve) . ' User(s) have been approved!</div>';
-    header('Location: admin.php');
+    $_SESSION['message'] = count($user_ids_to_approve) . ' User(s) have been approved!';
+    header('Location: ../src/index.php');
     exit;
 }
 
