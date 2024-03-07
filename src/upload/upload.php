@@ -18,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['transactionFile'])) 
     } elseif (!is_writable($uploadDir)) {
         $_SESSION['error-message'] = "Upload directory is not writable.";
     } elseif (move_uploaded_file($_FILES['transactionFile']['tmp_name'], $uploadFile)) {
-        // echo "The file " . htmlspecialchars(basename($_FILES['transactionFile']['name'])) . " has been uploaded.";
-        // Call the import function
         $db = connect_database();
         importCSVToSQLite($uploadFile, $db);
         $_SESSION['message'] = "The file has been uploaded and imported.";
