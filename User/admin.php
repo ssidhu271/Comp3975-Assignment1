@@ -3,40 +3,33 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$message = '';
-if (isset($_SESSION['approved'])) {
-    $message = '<div class="alert alert-success" role="alert">User has been approved!</div>';
-    unset($_SESSION['approved']);
-}
-
-// Include database connection setup
 require_once '../src/database_setup.php';
 require_once '../src/PageConfig/navbar.php';
 $db = connect_database(); // Connect to the database
 
-// Check if the user is an admin
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     die("Unauthorized access.");
 }
 
-// Check if there's a POST request to approve a user
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_user_id'])) {
     $user_id_to_approve = $_POST['approve_user_id'];
     $stmt = $db->prepare("UPDATE users SET is_approved = 1 WHERE user_id = ?");
     $stmt->bindValue(1, $user_id_to_approve, SQLITE3_INTEGER);
-    $stmt->execute();
+    $result = $stmt->execute();
 
-    $_SESSION['approved'] = true;
-    session_write_close();
+    if ($result) {
+        $_SESSION['message'] = '<div class="alert alert-success" role="alert">User has been approved!</div>';
+    } else {
+        $_SESSION['message'] = '<div class="alert alert-danger" role="alert">An error occurred.</div>';
+    }
 
     header('Location: admin.php');
     exit;
 }
 
-// Fetch unapproved users
-$unapproved_users = $db->query("SELECT user_id, email FROM users WHERE is_approved = 0");
+$message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+unset($_SESSION['message']);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
