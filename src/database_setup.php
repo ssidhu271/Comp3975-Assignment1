@@ -94,12 +94,13 @@ function importCSVToSQLite($filePath, $db)
         // fgetcsv($handle);
 
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            $date = DateTime::createFromFormat('m/d/Y', $data[0]);
+            $date_string = trim($data[0], "\xEF\xBB\xBF");
+            $date = DateTime::createFromFormat('m/d/Y', $date_string);
             if ($date) {
                 $formattedDate = $date->format('Y-m-d');
             } else {
                 // Handle the error appropriately if the date conversion fails
-                echo "Error parsing date: {$data[0]}";
+                echo "Error parsing date: {$date_string}";
                 continue; // Skip this row or use a default date
             }
 
