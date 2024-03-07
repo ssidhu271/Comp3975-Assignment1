@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['approve_user_id'])) {
     $stmt->execute();
 
     $_SESSION['approved'] = true;
+    session_write_close();
 
     header('Location: admin.php');
     exit;
