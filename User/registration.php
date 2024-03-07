@@ -66,6 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <?php echo $message; ?>
     <div class="container form-container text-center">
         <h2 class="text-center">Register</h2>
         <form action="registration.php" method="post">
