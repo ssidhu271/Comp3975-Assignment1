@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['transactionFile'])) 
         $db = connect_database();
         importCSVToSQLite($uploadFile, $db);
         $_SESSION['message'] = "The file has been uploaded and imported.";
+        header("Location: ../index.php");
     } else {
         $_SESSION['error-message'] = "There was an error uploading your file.";
     }

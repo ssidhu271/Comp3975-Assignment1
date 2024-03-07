@@ -54,7 +54,7 @@ if (isset($_GET['message'])) {
                         <td>
                             <?php
                             if (isset($_SESSION['user_id']) && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
-                                echo '<button class="btn btn-warning" onclick="location.href=\'../Update/update_html.php?id=' . $bucket['bucket_id'] . '\'">Update</button>';
+                                echo '<button class="btn btn-warning" onclick="location.href=\'../Update/update_html.php?id=' . htmlspecialchars($bucket['bucket_id']) . '\'">Update</button>';
                                 echo '<button class="btn btn-danger" onclick="location.href=\'../Delete/delete.php?id=' . htmlspecialchars($bucket['bucket_id']) . '\'">Delete</button>';
                             }
                             ?>
